@@ -20,7 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\AoCFSharp\AoCFSharp.fsproj" />
+      <ProjectReference Include="..\AoCFSharp\AoCFSharp.fsproj" />
     </ItemGroup>
 
 

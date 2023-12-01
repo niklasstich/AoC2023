@@ -1,9 +1,9 @@
 ﻿using System.CommandLine;
-using AdventOfCode2022.Running;
-using AdventOfCode2022.Utilities;
+using AoC.Running;
+using AoC.Utilities;
 using BenchmarkDotNet.Running;
 
-namespace AdventOfCode2022;
+namespace AoC;
 
 internal class Program
 {

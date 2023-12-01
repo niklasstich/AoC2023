@@ -1,7 +1,7 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Order;
 
-namespace AdventOfCode2022.Running;
+namespace AoC.Running;
 
 [MemoryDiagnoser(false)]
 [Orderer(SummaryOrderPolicy.Method, MethodOrderPolicy.Alphabetical)]

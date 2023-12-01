@@ -1,7 +1,7 @@
 using System.Reflection;
 using System.Text.RegularExpressions;
 
-namespace AdventOfCode2022.Running;
+namespace AoC.Running;
 
 public partial class BaseChallengeFSharp
 {

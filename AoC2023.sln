@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AoC-Template", "src\AoC-Template\AoC-Template.csproj", "{191202B7-9290-4CB8-8F9F-A8F021204A71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AoC", "src\AoC\AoC.csproj", "{191202B7-9290-4CB8-8F9F-A8F021204A71}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "AoCFSharp", "AoCFSharp\AoCFSharp.fsproj", "{49F90BB6-C326-417C-B78E-287C3F61BE6E}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "AoCFSharp", "src\AoCFSharp\AoCFSharp.fsproj", "{49F90BB6-C326-417C-B78E-287C3F61BE6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

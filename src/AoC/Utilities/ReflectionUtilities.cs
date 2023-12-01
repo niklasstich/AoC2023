@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using AdventOfCode2022.Running;
+using AoC.Running;
 
-namespace AdventOfCode2022.Utilities;
+namespace AoC.Utilities;
 
 public static partial class ReflectionUtilities
 {

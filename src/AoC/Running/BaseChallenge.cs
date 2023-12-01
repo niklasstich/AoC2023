@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode2022.Running;
+﻿namespace AoC.Running;
 
 public abstract class BaseChallenge
 {
