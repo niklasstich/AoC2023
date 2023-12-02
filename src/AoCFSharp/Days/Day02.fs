@@ -53,9 +53,8 @@ let isAllowed (_, linemax) =
     && linemax.greenMax <= maxAllowed.greenMax
     && linemax.blueMax <= maxAllowed.blueMax
 
-let part1 (input: string) =
+let part1 input =
     input
-    |> splitLines
     |> Array.map findMaximums
     |> Array.mapi (fun i x -> (i + 1, x))
     |> Array.where isAllowed
@@ -63,9 +62,8 @@ let part1 (input: string) =
     |> Array.sum
     |> string
 
-let part2 (input: string) =
+let part2 input =
     input
-    |> splitLines
     |> Array.map (findMaximums >> (fun x -> x.blueMax * x.greenMax * x.redMax))
     |> Array.sum
     |> string

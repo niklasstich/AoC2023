@@ -28,16 +28,14 @@ let replaceWordsWithDigits (line: string) =
     digitMap |> Map.fold rp line
 
 
-let part1 (input: string) =
+let part1 input =
     input
-    |> splitLines
     |> Array.map (filterStringToIntSeq >> takeBothEnds >> int)
     |> Array.sum
     |> string
 
-let part2 (input: string) =
+let part2 input =
     input
-    |> splitLines
     |> Array.map (replaceWordsWithDigits >> filterStringToIntSeq >> takeBothEnds >> int)
     |> Array.sum
     |> string
