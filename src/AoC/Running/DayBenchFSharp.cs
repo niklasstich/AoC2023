@@ -5,6 +5,7 @@ namespace AoC.Running;
 
 [MemoryDiagnoser(false)]
 [Orderer(SummaryOrderPolicy.Method, MethodOrderPolicy.Alphabetical)]
+[InProcess]
 public class DayBenchFSharp
 {
 
