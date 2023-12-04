@@ -13,29 +13,33 @@ internal class Program
     private static void Main(string[] args)
     {
         var langOption = new Option<string>("--lang", () => "c#", "The language to run in.");
-        var daysOption = new Option<IEnumerable<int>>("--days", "The days to run.") {AllowMultipleArgumentsPerToken = true};
-        var daysOptionInRun = new Option<IEnumerable<int>>("--days", "The days to run.") {AllowMultipleArgumentsPerToken = true, IsRequired = true};
-        
+        var daysOption = new Option<IEnumerable<int>>("--days", "The days to run.")
+            { AllowMultipleArgumentsPerToken = true };
+        var daysOptionInRun = new Option<IEnumerable<int>>("--days", "The days to run.")
+            { AllowMultipleArgumentsPerToken = true, IsRequired = true };
+        var iterationsOption = new Option<int>("--iterations", () => 1, "The number of iterations to run.");
+
         var rootCommand = new RootCommand
         {
             langOption,
             daysOption,
         };
         rootCommand.SetHandler(RunWithBench, langOption, daysOption);
-        
+
         var runCommand = new Command("run", "Run without benchmark.");
         runCommand.AddOption(langOption);
         runCommand.AddOption(daysOptionInRun);
-        runCommand.SetHandler(RunWithoutBench, langOption, daysOptionInRun);
-        
+        runCommand.AddOption(iterationsOption);
+        runCommand.SetHandler(RunWithoutBench, langOption, daysOptionInRun, iterationsOption);
+
         var benchCommand = new Command("bench", "Run with benchmark.");
         benchCommand.AddOption(langOption);
         benchCommand.AddOption(daysOption);
         benchCommand.SetHandler(RunWithBench, langOption, daysOption);
-        
+
         rootCommand.AddCommand(runCommand);
         rootCommand.AddCommand(benchCommand);
-        
+
         rootCommand.Invoke(args);
     }
 
@@ -50,11 +54,11 @@ internal class Program
             case ("f#", 0):
                 BenchmarkRunner.Run<BulkBenchFSharp>();
                 break;
-            case ("c#",_):
+            case ("c#", _):
                 DayInputTypes = GetTypes(daysList);
                 BenchmarkRunner.Run<DayBenchCSharp>();
                 break;
-            case ("f#",_):
+            case ("f#", _):
                 DayInputFSharp = GetFSharpChallenges(daysList);
                 BenchmarkRunner.Run<DayBenchFSharp>();
                 break;
@@ -67,7 +71,7 @@ internal class Program
             foreach (var day in days)
             {
                 var type = ReflectionUtilities.GetChallengeType(day);
-                if(type is null)
+                if (type is null)
                     Console.WriteLine($"No challenge found for day {day}.");
                 else
                     yield return type;
@@ -76,11 +80,12 @@ internal class Program
 
         IEnumerable<BaseChallengeFSharp> GetFSharpChallenges(IEnumerable<int> days)
         {
-            List<(BaseChallengeFSharp challenge, int)> challenges = BulkBenchFSharp.Challenges().Select(c => (c, int.Parse(c.DayIdentifier))).ToList();
+            List<(BaseChallengeFSharp challenge, int)> challenges =
+                BulkBenchFSharp.Challenges().Select(c => (c, int.Parse(c.DayIdentifier))).ToList();
             foreach (var day in days)
             {
                 var challenge = challenges.FirstOrDefault(c => c.Item2 == day).challenge;
-                if(challenge is null) 
+                if (challenge is null)
                     Console.WriteLine($"No challenge found for day {day}.");
                 else
                     yield return challenge;
@@ -88,46 +93,56 @@ internal class Program
         }
     }
 
-    private static void RunWithoutBench(string lang, IEnumerable<int> days)
+    private static void RunWithoutBench(string lang, IEnumerable<int> days, int iterations)
     {
-        switch(lang)
+        switch (lang)
         {
             case "c#":
-                RunCSharpWithoutBench(days);
+                RunCSharpWithoutBench(days, iterations);
                 break;
             case "f#":
-                RunFSharpWithoutBench(days);
+                RunFSharpWithoutBench(days, iterations);
                 break;
         }
     }
 
-    private static void RunFSharpWithoutBench(IEnumerable<int> days)
+    private static void RunFSharpWithoutBench(IEnumerable<int> days, int iterations)
     {
-        foreach (var day in days)
+        for (var i = 0; i < iterations; i++)
         {
-            var challenge = BulkBenchFSharp.Challenges().FirstOrDefault(c => int.Parse(c.DayIdentifier) == day);
-            if (challenge is null)
-                Console.WriteLine($"No challenge found for day {day}.");
-            else
+            foreach (var day in days)
             {
-                Console.WriteLine($"Day {day} part 1: {challenge.SolvePartOne()}");
-                Console.WriteLine($"Day {day} part 2: {challenge.SolvePartTwo()}");
+                var challenge = BulkBenchFSharp.Challenges().FirstOrDefault(c => int.Parse(c.DayIdentifier) == day);
+                if (challenge is null)
+                    Console.WriteLine($"No challenge found for day {day}.");
+                else
+                {
+                    var solvePartOne = challenge.SolvePartOne();
+                    var solvePartTwo = challenge.SolvePartTwo();
+                    if (i != 0) continue;
+                    Console.WriteLine($"Day {day} part 1: {solvePartOne}");
+                    Console.WriteLine($"Day {day} part 2: {solvePartTwo}");
+                }
             }
         }
     }
 
-    private static void RunCSharpWithoutBench(IEnumerable<int> days)
+    private static void RunCSharpWithoutBench(IEnumerable<int> days, int iterations)
     {
-        foreach (var day in days)
+        for (var i = 0; i < iterations; i++)
         {
-            var type = ReflectionUtilities.GetChallengeType(day);
-            if (type is null)
-                Console.WriteLine($"No challenge found for day {day}.");
-            else
+            foreach (var day in days)
             {
-                var challenge = (BaseChallenge)Activator.CreateInstance(type)!;
-                Console.WriteLine($"Day {day} part 1: {challenge.SolvePartOne()}");
-                Console.WriteLine($"Day {day} part 2: {challenge.SolvePartTwo()}");
+                var type = ReflectionUtilities.GetChallengeType(day);
+                if (type is null)
+                    Console.WriteLine($"No challenge found for day {day}.");
+                else
+                {
+                    var challenge = (BaseChallenge)Activator.CreateInstance(type)!;
+                    if (i != 0) continue;
+                    Console.WriteLine($"Day {day} part 1: {challenge.SolvePartOne()}");
+                    Console.WriteLine($"Day {day} part 2: {challenge.SolvePartTwo()}");
+                }
             }
         }
     }

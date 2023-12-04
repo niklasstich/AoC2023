@@ -60,6 +60,11 @@ let findGearRatios (symbols: SymbolPosition array) (numbers: NumberPosition arra
     |> Array.filter (fun a -> Array.length a = 2)
     |> Array.map addTuples
 
+(*
+This day is really slow because I (out of pure lazyness) use a cross product to find the numbers next to the symbols.
+This could be optimized with some sliding window solution, but I'm too lazy to do that right now.
+*)
+
 let part1 (input: string array) =
     let numbersNextToSymbols =
         input
