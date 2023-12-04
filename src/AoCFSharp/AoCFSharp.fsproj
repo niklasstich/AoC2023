@@ -10,6 +10,7 @@
         <Compile Include="Days\Day01.fs"/>
         <Compile Include="Days\Day02.fs" />
         <Compile Include="Days\Day03.fs" />
+        <Compile Include="Days\Day04.fs" />
     </ItemGroup>
 
 </Project>

@@ -17,3 +17,6 @@ let countDigitsInNumber n =
         | _ when n < 10 -> acc
         | _ -> digitsInNumber' (n/10) (acc+1)
     digitsInNumber' n 1
+    
+let flip f x y = f y x
+let (-*-) = flip
