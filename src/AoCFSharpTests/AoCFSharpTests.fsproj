@@ -11,6 +11,7 @@
 
     <ItemGroup>
         <Compile Include="IntervalTreeTests.fs" />
+        <Compile Include="IntervalDataTreeTests.fs" />
     </ItemGroup>
 
     <ItemGroup>

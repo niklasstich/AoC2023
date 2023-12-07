@@ -1,12 +1,12 @@
 module AoCFSharp.Lib.IntervalTree
 
-open AoCFSharp.Lib.Tree
+open Tree
+open Shared
 
 module IntervalTree =
 
     type 'a IntervalTreeNode = { lower: 'a; upper: 'a; max: 'a }
 
-    let intersects' head (bl, bu) = max head.lower bl <= min head.upper bu
 
     let rec insert tree interval =
         let lo, hi = interval
@@ -35,12 +35,12 @@ module IntervalTree =
         | Empty -> false
         | Node(head, l, r) ->
             match (l, interval) with
-            | _ when intersects' head interval -> true
+            | _ when intersects' (head.lower, head.upper) interval -> true
             | Empty, _ -> intersects r interval
             | Node(headInner, _, _), (lo, _) when headInner.max < lo -> intersects r interval
             | _ -> intersects l interval
 
-    type IntervalTree<'a when 'a: comparison>(inner: 'a IntervalTreeNode tree) =
+    type IntervalTree<'a when 'a: comparison>(inner) =
         member this.head = Tree.head inner
         member this.intersects interval = intersects inner interval
 

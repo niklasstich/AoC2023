@@ -11,6 +11,11 @@
         <Compile Include="Days\Day02.fs" />
         <Compile Include="Days\Day03.fs" />
         <Compile Include="Days\Day04.fs" />
+        <Compile Include="Lib\Shared.fs" />
+        <Compile Include="Lib\Tree.fs" />
+        <Compile Include="Lib\IntervalTree.fs" />
+        <Compile Include="Lib\BinaryTree.fs" />
+        <Compile Include="Lib\IntervalDataTree.fs" />
     </ItemGroup>
 
 </Project>
