@@ -5,8 +5,8 @@ type 'a tree =
     | Node of 'a * 'a tree * 'a tree
 
 module Tree = 
-    let head =
-        function
+    let inline head tree =
+        match tree with 
         | Empty -> failwith "Empty tree"
         | Node(x, _, _) -> x
 

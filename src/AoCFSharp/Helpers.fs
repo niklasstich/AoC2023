@@ -20,3 +20,7 @@ let countDigitsInNumber n =
     
 let flip f x y = f y x
 let (-*-) = flip
+let curry f a b =
+    f (a, b)
+let uncurry f (a, b) =
+    f a b

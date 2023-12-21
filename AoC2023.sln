@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AoC", "src\AoC\AoC.csproj",
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "AoCFSharp", "src\AoCFSharp\AoCFSharp.fsproj", "{49F90BB6-C326-417C-B78E-287C3F61BE6E}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "AoCFSharpTests", "src\AoCFSharpTests\AoCFSharpTests.fsproj", "{D8A78E93-17BF-4BFE-9987-965B6DE742F3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{49F90BB6-C326-417C-B78E-287C3F61BE6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49F90BB6-C326-417C-B78E-287C3F61BE6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49F90BB6-C326-417C-B78E-287C3F61BE6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8A78E93-17BF-4BFE-9987-965B6DE742F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8A78E93-17BF-4BFE-9987-965B6DE742F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8A78E93-17BF-4BFE-9987-965B6DE742F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8A78E93-17BF-4BFE-9987-965B6DE742F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

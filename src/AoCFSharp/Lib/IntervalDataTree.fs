@@ -50,14 +50,24 @@ module IntervalDataTree =
             | Empty, _ -> intersects r interval
             | Node(headInner, _, _), (lo, _) when headInner.max < lo -> intersects r interval
             | _ -> intersects l interval
-
+    
+    let rec getIntersection tree interval =
+        match tree with
+        | Empty -> None
+        | Node(head, l, r) ->
+            match (l, interval) with
+            | _ when intersects' (head.lower, head.upper) interval -> Some((intersection (head.lower, head.upper) interval), head.data)
+            | Empty, _ -> getIntersection r interval
+            | Node(headInner, _, _), (lo, _) when headInner.max < lo -> getIntersection r interval
+            | _ -> getIntersection l interval
 
 
     type IntervalDataTree<'a, 'b when 'a: comparison>(inner: IntervalTreeNode<'a, 'b> tree) =
         member this.head = Tree.head inner
         member this.intersects interval = intersects inner interval
+        member this.getIntersection interval = getIntersection inner interval
 
         member this.insert interval data : IntervalDataTree<'a, 'b> =
             IntervalDataTree(insert inner interval data)
 
-        static member empty = IntervalDataTree(Empty)
+        static member empty = IntervalDataTree<'a, 'b>(Empty)
