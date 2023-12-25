@@ -1,6 +1,8 @@
 module AoCFSharp.Helpers
 
-let splitLines (input: string) = input.Split '\n'
+open System
+
+let splitLines (input: string) = input.Split Environment.NewLine
 
 let crossProduct xs ys =
     seq {
@@ -25,3 +27,10 @@ let curry f a b =
 let uncurry f (a, b) =
     f a b
 let toHexString (c: int) = c.ToString("X")
+
+let rec gcd x y = if y = 0 then abs x else gcd y (x % y)
+
+let lcm x y = x * y / (gcd x y)
+let rec gcd64 (x:int64) (y:int64) = if y = 0 then abs x else gcd64 y (x % y)
+
+let lcm64 (x:int64) (y:int64) = x * y / (gcd64 x y)
