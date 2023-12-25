@@ -12,6 +12,7 @@
         <Compile Include="Lib\IntervalTree.fs" />
         <Compile Include="Lib\BinaryTree.fs" />
         <Compile Include="Lib\IntervalDataTree.fs" />
+        <Compile Include="Lib\Polynomial.fs" />
         <Compile Include="Days\Day01.fs"/>
         <Compile Include="Days\Day02.fs" />
         <Compile Include="Days\Day03.fs" />
@@ -20,6 +21,7 @@
         <Compile Include="Days\Day06.fs" />
         <Compile Include="Days\Day07.fs" />
         <Compile Include="Days\Day08.fs" />
+        <Compile Include="Days\Day09.fs" />
     </ItemGroup>
 
     <ItemGroup>
